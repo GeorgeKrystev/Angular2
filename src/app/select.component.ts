@@ -4,14 +4,15 @@ import {Component, Input, ElementRef} from '@angular/core';
     selector: 'custom-select',
     styles: [`
         .select-zippy {
-            width: 150px;
+            width: 150px; 
+            height: auto;
             border: 1px solid #ccc;
             border-radius: 2px;
         }
         
         .select-zippy .select-title {
             background: #f6f6f6;
-            padding: 20px 10px;
+            padding: 5px;
             font-weight: bold;
         }
         
@@ -19,15 +20,21 @@ import {Component, Input, ElementRef} from '@angular/core';
             background: #f0f0f0;
             cursor: pointer;
         }
-        chev {
-            margin: 0px 7px;
+       chev {
+               margin: 4px 0px;
         }
         .select-zippy .select-content {
-            padding: 20px;
+            padding: 5px;
         }
         .item {
             list-style-type: none;
             cursor: pointer;
+        }
+        .list {
+            
+            max-height: 70px;
+            height: auto;
+            overflow: auto;
         }
     `],
     template: `
@@ -37,7 +44,7 @@ import {Component, Input, ElementRef} from '@angular/core';
             (click)="toggle()">
             {{title}}
             <i
-                class="pull-left glyphicon chev"
+                class="pull-right glyphicon chev"
                 [ngClass]="
                     {
                         'glyphicon-chevron-down': !isExpanded,
@@ -47,8 +54,8 @@ import {Component, Input, ElementRef} from '@angular/core';
             </i>
          </div>
          <div *ngIf="isExpanded" class="select-content">
-            <ul class="list" *ngFor="let item of list">
-                <li class="item"   (click)="item($event)"  >
+            <ul class="list" >
+                <li class="item"  *ngFor="let item of list" (click)="item($event)"  >
                     {{ item }}
                 </li>
             </ul>
